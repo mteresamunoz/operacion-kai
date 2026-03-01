@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operación Kaipiriña 🍹</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL DEL JUEGO -->
+    <div id="game-container" class="fondo-inicio">
+
+        <!-- ===== PANTALLA DE INICIO ===== -->
+        <div id="pantalla-inicio">
+            <div class="titulo-box">
+                <h1 class="titulo-principal">Nuestra Aventura</h1>
+                <h2 class="titulo-sub">Operación Kaipiriña</h2>
+                <p class="subtitulo">¿Cuánto sabes de nuestra historia?</p>
+            </div>
+
+            <!-- Manex cerca de la ikurriña (norte / Donosti) -->
+            <img src="dibujos/manex/manex_neutral.png" alt="Manex" class="pj-inicio" id="manex-inicio">
+            <!-- Maite cerca de la aceituna (sur / Jaén) -->
+            <img src="dibujos/maite/maite_neutral.png" alt="Maite" class="pj-inicio" id="maite-inicio">
+
+            <button id="btn-empezar" onclick="iniciarJuego()">Empezar viaje</button>
+        </div>
+
+        <!-- ===== PANTALLA DE JUEGO ===== -->
+        <div id="pantalla-juego" class="hidden">
+
+            <!-- Barra de progreso -->
+            <div id="barra-progreso-container">
+                <div id="barra-progreso-track">
+                    <div id="barra-progreso"></div>
+                </div>
+                <span id="progreso-texto">0 / 6</span>
+            </div>
+
+            <!-- Mensaje de error (fallo) -->
+            <div id="mensaje-error" class="hidden">
+                <span id="texto-error"></span>
+                <span id="hint-reintentar"> — ¡Inténtalo de nuevo!</span>
+            </div>
+
+            <!-- Caja de pregunta -->
+            <div id="caja-pregunta">
+                <p id="texto-pregunta"></p>
+                <div id="opciones"></div>
+            </div>
+
+            <!-- Escena: fondo con camino + personajes -->
+            <div id="escena">
+                <div id="pjs-container">
+                    <img src="dibujos/manex/manex_neutral.png" alt="Manex" id="pj-manex">
+                    <img src="dibujos/maite/maite_neutral.png" alt="Maite" id="pj-maite">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== PANTALLA FINAL ===== -->
+        <div id="pantalla-final" class="hidden">
+            <div id="final-box">
+                <h2>¡Lo logramos!</h2>
+                <p id="titulo-final">¡Operación Caipiriña: completada!</p>
+                <p id="subtitulo-final">Brasil nos espera… y yo también.</p>
+                <p id="puntuacion-final"></p>
+            </div>
+            <div id="pjs-final">
+                <img src="dibujos/manex/manex_feliz.gif" alt="Manex feliz" class="pj-final">
+                <img src="dibujos/maite/maite_feliz.gif" alt="Maite feliz" class="pj-final">
+            </div>
+        </div>
+
+    </div><!-- fin #game-container -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
