@@ -2,6 +2,35 @@
    OPERACIÓN KAIPIRIÑA – script.js
    ================================================ */
 
+// --- ESCALAR EL JUEGO PARA QUE QUEPA EN CUALQUIER PANTALLA ---
+// El juego siempre mide 900×550px internamente.
+// En lugar de cambiar cada elemento, escalamos el contenedor entero.
+const BASE_W = 900;
+const BASE_H = 550;
+
+function escalarJuego() {
+    const container = document.getElementById('game-container');
+    const scaleX = window.innerWidth  / BASE_W;
+    const scaleY = window.innerHeight / BASE_H;
+    const scale  = Math.min(scaleX, scaleY); // caber en ambas dimensiones
+
+    container.style.width  = BASE_W + 'px';
+    container.style.height = BASE_H + 'px';
+    container.style.transform = `scale(${scale})`;
+    container.style.transformOrigin = 'center center';
+
+    // Centrar el contenedor aunque transform no mueva el espacio real
+    container.style.position = 'absolute';
+    container.style.top  = '50%';
+    container.style.left = '50%';
+    container.style.marginTop  = -(BASE_H / 2) + 'px';
+    container.style.marginLeft = -(BASE_W / 2) + 'px';
+}
+
+window.addEventListener('resize', escalarJuego);
+window.addEventListener('orientationchange', escalarJuego);
+document.addEventListener('DOMContentLoaded', escalarJuego);
+
 let preguntaActual = 0;
 let fallos = 0;                 // contador de fallos totales
 let fallosEstaRonda = 0;        // fallos en la pregunta actual (para reset visual)

@@ -40,10 +40,9 @@ canvas {
    CONTENEDOR PRINCIPAL – RESPONSIVO
    =================================================== */
 #game-container {
-    position: relative;
-    /* Tamaño base 900×550, pero se encoge en pantallas pequeñas */
-    width: min(900px, 100vw);
-    height: min(550px, 100dvh);
+    position: absolute;
+    width: 900px;
+    height: 550px;
     border-radius: 16px;
     overflow: hidden;
     border: 4px solid #fff;
@@ -485,141 +484,8 @@ canvas {
     animation: flotar 1.8s ease-in-out infinite alternate;
 }
 
-/* ===================================================
-   RESPONSIVE – pantallas pequeñas
-   =================================================== */
-@media (max-width: 920px) {
-    #game-container {
-        border-radius: 0;
-        border: none;
-        width: 100vw;
-        height: 100dvh;
-    }
-}
-
-@media (max-width: 600px) {
-    .titulo-box {
-        top: 16px;
-        left: 12px;
-        right: 12px;
-        padding: 10px 14px;
-        max-width: none;
-        white-space: normal; /* solo en móvil permite el salto de línea */
-    }
-
-    .titulo-principal {
-        font-size: 0.6rem;
-    }
-
-    .titulo-sub {
-        font-size: 0.75rem;
-    }
-
-    .subtitulo {
-        font-size: 0.7rem;
-    }
-
-    /* Personajes más pequeños en inicio */
-    .pj-inicio {
-        height: 80px;
-    }
-
-    /* Botón empezar más compacto */
-    #btn-empezar {
-        font-size: 0.6rem;
-        padding: 10px 18px;
-        bottom: 20px;
-        right: 16px;
-    }
-
-    /* Panel de pregunta más compacto */
-    #pantalla-juego {
-        padding: 10px 12px 0;
-    }
-
-    #caja-pregunta {
-        padding: 12px 14px;
-        margin-bottom: 6px;
-    }
-
-    #texto-pregunta {
-        font-size: 0.82rem;
-        margin-bottom: 10px;
-    }
-
-    #opciones {
-        gap: 8px;
-    }
-
-    #opciones button {
-        min-width: 0;          /* quita el mínimo para que se ajusten al espacio */
-        font-size: 0.78rem;
-        padding: 9px 10px;
-    }
-
-    #pjs-container img {
-        height: 75px;
-    }
-
-    #progreso-texto {
-        font-size: 0.55rem;
-    }
-
-    #mensaje-error {
-        font-size: 0.8rem;
-        padding: 8px 12px;
-    }
-
-    #hint-reintentar {
-        font-size: 0.65rem;
-    }
-
-    /* Pantalla final */
-    #final-box {
-        padding: 16px 18px;
-        margin: 0 12px;
-    }
-
-    #final-box h2 {
-        font-size: 0.75rem;
-    }
-
-    #titulo-final {
-        font-size: 0.9rem;
-    }
-
-    #subtitulo-final {
-        font-size: 0.82rem;
-    }
-
-    #puntuacion-final {
-        font-size: 0.58rem;
-    }
-
-    .pj-final {
-        height: 100px;
-    }
-}
-
-/* Pantallas muy pequeñas (< 380px, ej. iPhone SE) */
-@media (max-width: 380px) {
-    .titulo-sub {
-        font-size: 0.65rem;
-    }
-
-    #texto-pregunta {
-        font-size: 0.75rem;
-    }
-
-    #opciones button {
-        font-size: 0.72rem;
-        padding: 8px 8px;
-    }
-
-    #pjs-container img {
-        height: 60px;
-    }
-}
+/* Los media queries de tamaño ya no son necesarios porque el JS
+   escala el juego entero (900×550) proporcionalmente a cualquier pantalla */
 /* ===================================================
    AVISO GIRAR MÓVIL
    Solo visible en portrait (alto > ancho) en móvil
