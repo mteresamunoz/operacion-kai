@@ -10,8 +10,9 @@ const BASE_H = 550;
 
 function escalarJuego() {
     const container = document.getElementById('game-container');
-    const scaleX = window.innerWidth  / BASE_W;
-    const scaleY = window.innerHeight / BASE_H;
+    // clientWidth/Height es más fiable que innerWidth en móvil
+    const scaleX = document.documentElement.clientWidth  / BASE_W;
+    const scaleY = document.documentElement.clientHeight / BASE_H;
     const scale  = Math.min(scaleX, scaleY); // caber en ambas dimensiones
 
     container.style.width  = BASE_W + 'px';
@@ -30,6 +31,10 @@ function escalarJuego() {
 window.addEventListener('resize', escalarJuego);
 window.addEventListener('orientationchange', escalarJuego);
 document.addEventListener('DOMContentLoaded', escalarJuego);
+// visualViewport dispara en Chrome móvil cuando aparece/desaparece la barra del browser
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', escalarJuego);
+}
 
 let preguntaActual = 0;
 let fallos = 0;                 // contador de fallos totales

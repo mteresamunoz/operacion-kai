@@ -185,11 +185,11 @@ canvas {
    PANTALLA DE JUEGO
    =================================================== */
 #pantalla-juego {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
     padding: 14px 18px 0;
-    position: relative;
 }
 
 /* --- Barra de progreso --- */
@@ -360,7 +360,7 @@ canvas {
 #escena {
     position: relative;
     flex: 1;
-    /* Sin overflow:hidden para dejar que el fondo del contenedor sea visible */
+    min-height: 0; /* evita que flexbox colapse este elemento en móvil */
 }
 
 /* Contenedor de personajes: se mueve por porcentaje del ancho del
@@ -411,11 +411,12 @@ canvas {
    PANTALLA FINAL
    =================================================== */
 #pantalla-final {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
     gap: 24px;
 }
 
