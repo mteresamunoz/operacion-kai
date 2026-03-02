@@ -20,7 +20,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100dvh;   /* dvh evita el corte por la barra del navegador en móvil */
     width: 100vw;
 }
 
@@ -43,7 +43,7 @@ canvas {
     position: relative;
     /* Tamaño base 900×550, pero se encoge en pantallas pequeñas */
     width: min(900px, 100vw);
-    height: min(550px, 100vh);
+    height: min(550px, 100dvh);
     border-radius: 16px;
     overflow: hidden;
     border: 4px solid #fff;
@@ -88,7 +88,7 @@ canvas {
     text-align: left;
     backdrop-filter: blur(4px);
     z-index: 2;
-    white-space: nowrap;
+    white-space: nowrap; /* en desktop se queda en una línea como el original */
 }
 
 .titulo-principal {
@@ -368,8 +368,7 @@ canvas {
    contenedor, calculado en JS como fracción del ancho total */
 #pjs-container {
     position: absolute;
-    bottom: 72px;
-    /* altura del camino amarillo en fondo2.png */
+    bottom: 13%;           /* porcentaje relativo a la escena, se adapta al alto */
     left: 0px;
     display: flex;
     gap: 2px;
@@ -494,38 +493,185 @@ canvas {
         border-radius: 0;
         border: none;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
     }
 }
 
 @media (max-width: 600px) {
+    .titulo-box {
+        top: 16px;
+        left: 12px;
+        right: 12px;
+        padding: 10px 14px;
+        max-width: none;
+        white-space: normal; /* solo en móvil permite el salto de línea */
+    }
+
     .titulo-principal {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
     .titulo-sub {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
     }
 
-    #texto-pregunta {
-        font-size: 0.85rem;
+    .subtitulo {
+        font-size: 0.7rem;
     }
 
-    #opciones button {
-        min-width: 130px;
-        font-size: 0.8rem;
-        padding: 10px 12px;
-    }
-
-    #pjs-container img {
+    /* Personajes más pequeños en inicio */
+    .pj-inicio {
         height: 80px;
     }
 
+    /* Botón empezar más compacto */
+    #btn-empezar {
+        font-size: 0.6rem;
+        padding: 10px 18px;
+        bottom: 20px;
+        right: 16px;
+    }
+
+    /* Panel de pregunta más compacto */
+    #pantalla-juego {
+        padding: 10px 12px 0;
+    }
+
+    #caja-pregunta {
+        padding: 12px 14px;
+        margin-bottom: 6px;
+    }
+
+    #texto-pregunta {
+        font-size: 0.82rem;
+        margin-bottom: 10px;
+    }
+
+    #opciones {
+        gap: 8px;
+    }
+
+    #opciones button {
+        min-width: 0;          /* quita el mínimo para que se ajusten al espacio */
+        font-size: 0.78rem;
+        padding: 9px 10px;
+    }
+
+    #pjs-container img {
+        height: 75px;
+    }
+
+    #progreso-texto {
+        font-size: 0.55rem;
+    }
+
+    #mensaje-error {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    #hint-reintentar {
+        font-size: 0.65rem;
+    }
+
+    /* Pantalla final */
     #final-box {
-        padding: 18px 22px;
+        padding: 16px 18px;
+        margin: 0 12px;
     }
 
     #final-box h2 {
+        font-size: 0.75rem;
+    }
+
+    #titulo-final {
         font-size: 0.9rem;
+    }
+
+    #subtitulo-final {
+        font-size: 0.82rem;
+    }
+
+    #puntuacion-final {
+        font-size: 0.58rem;
+    }
+
+    .pj-final {
+        height: 100px;
+    }
+}
+
+/* Pantallas muy pequeñas (< 380px, ej. iPhone SE) */
+@media (max-width: 380px) {
+    .titulo-sub {
+        font-size: 0.65rem;
+    }
+
+    #texto-pregunta {
+        font-size: 0.75rem;
+    }
+
+    #opciones button {
+        font-size: 0.72rem;
+        padding: 8px 8px;
+    }
+
+    #pjs-container img {
+        height: 60px;
+    }
+}
+/* ===================================================
+   AVISO GIRAR MÓVIL
+   Solo visible en portrait (alto > ancho) en móvil
+   =================================================== */
+#rotate-overlay {
+    display: none; /* oculto por defecto */
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #1a0a2e;
+    align-items: center;
+    justify-content: center;
+}
+
+#rotate-box {
+    text-align: center;
+    color: #fff;
+    padding: 32px;
+}
+
+#rotate-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: rotar-icono 1.8s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes rotar-icono {
+    0%   { transform: rotate(0deg); }
+    40%  { transform: rotate(90deg); }
+    60%  { transform: rotate(90deg); }
+    100% { transform: rotate(90deg); }
+}
+
+#rotate-box p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
+    color: #ffd700;
+    text-shadow: 0 0 12px #ffaa00;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+#rotate-box span {
+    font-size: 0.82rem;
+    color: #ccc;
+    font-style: italic;
+}
+
+/* Mostrar overlay solo en portrait en pantallas pequeñas */
+@media (max-width: 768px) and (orientation: portrait) {
+    #rotate-overlay {
+        display: flex;
     }
 }
